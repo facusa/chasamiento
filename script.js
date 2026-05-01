@@ -1,9 +1,8 @@
 // Countdown Timer Logic
 const countdown = () => {
-    // Wedding Date: October 24, 2026
-    const countDate = new Date('Oct 24, 2026 18:00:00').getTime();
-    const now = new Date().getTime();
-    const gap = countDate - now;
+    const targetDate = new Date('Oct 24, 2026 18:00:00');
+    const now = new Date();
+    const gap = targetDate.getTime() - now.getTime();
 
     // How the time works
     const second = 1000;
@@ -12,18 +11,42 @@ const countdown = () => {
     const day = hour * 24;
 
     // Calculate
-    const textDay = Math.floor(gap / day);
-    const textHour = Math.floor((gap % day) / hour);
-    const textMinute = Math.floor((gap % hour) / minute);
-    const textSecond = Math.floor((gap % minute) / second);
-
-    // Update HTML
     if (gap > 0) {
+        let m = targetDate.getMonth() - now.getMonth() + (12 * (targetDate.getFullYear() - now.getFullYear()));
+        let d = targetDate.getDate() - now.getDate();
+        
+        if (d < 0) {
+            m -= 1;
+            const daysInLastMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+            d += daysInLastMonth;
+        }
+        
+        const hGap = targetDate.getHours() - now.getHours();
+        const mGap = targetDate.getMinutes() - now.getMinutes();
+        const sGap = targetDate.getSeconds() - now.getSeconds();
+        
+        if (hGap < 0 || (hGap === 0 && mGap < 0) || (hGap === 0 && mGap === 0 && sGap < 0)) {
+            d -= 1;
+            if (d < 0) {
+                m -= 1;
+                const daysInLastMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+                d += daysInLastMonth;
+            }
+        }
+        
+        const textMonth = m;
+        const textDay = d;
+        const textHour = Math.floor((gap % day) / hour);
+        const textMinute = Math.floor((gap % hour) / minute);
+        const textSecond = Math.floor((gap % minute) / second);
+
+        document.getElementById('months').innerText = textMonth.toString().padStart(2, '0');
         document.getElementById('days').innerText = textDay.toString().padStart(2, '0');
         document.getElementById('hours').innerText = textHour.toString().padStart(2, '0');
         document.getElementById('minutes').innerText = textMinute.toString().padStart(2, '0');
         document.getElementById('seconds').innerText = textSecond.toString().padStart(2, '0');
     } else {
+        document.getElementById('months').innerText = '00';
         document.getElementById('days').innerText = '00';
         document.getElementById('hours').innerText = '00';
         document.getElementById('minutes').innerText = '00';
@@ -36,19 +59,35 @@ setInterval(countdown, 1000);
 // Audio Player Logic
 const audioControl = document.getElementById('audioControl');
 const bgMusic = document.getElementById('bgMusic');
-let isPlaying = false;
+let isPlaying = true; // Assume autoplay starts
 
-audioControl.addEventListener('click', () => {
+// Handle the case where browser blocks autoplay
+bgMusic.addEventListener('play', () => {
+    isPlaying = true;
+    audioControl.classList.add('playing');
+    audioControl.innerHTML = '<i class="fas fa-pause"></i>';
+});
+
+bgMusic.addEventListener('pause', () => {
+    isPlaying = false;
+    audioControl.classList.remove('playing');
+    audioControl.innerHTML = '<i class="fas fa-music"></i>';
+});
+
+// Try playing on first interaction if autoplay was blocked
+document.body.addEventListener('click', () => {
+    if (bgMusic.paused && isPlaying) {
+        bgMusic.play().catch(e => console.log("Audio play blocked by browser:", e));
+    }
+}, { once: true });
+
+audioControl.addEventListener('click', (e) => {
+    e.stopPropagation(); // prevent body click handler from interfering
     if (isPlaying) {
         bgMusic.pause();
-        audioControl.classList.remove('playing');
-        audioControl.innerHTML = '<i class="fas fa-music"></i>';
     } else {
         bgMusic.play();
-        audioControl.classList.add('playing');
-        audioControl.innerHTML = '<i class="fas fa-pause"></i>';
     }
-    isPlaying = !isPlaying;
 });
 
 // Toggle Gifts Details

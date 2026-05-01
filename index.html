@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chiara & Martín - Casamiento</title>
     <meta name="description" content="Nuestra boda será el 24 de Octubre de 2026. ¡Acompáñanos a celebrar!">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Audio Player -->
     <div class="audio-control" id="audioControl">
         <i class="fas fa-music"></i>
     </div>
-    <!-- Royalty free background music placeholder -->
-    <audio id="bgMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <!-- Audio player configurado con el audio de WhatsApp -->
+    <audio id="bgMusic" loop autoplay>
+        <source src="audio-boda.mpeg" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
     </audio>
 
@@ -29,8 +33,12 @@
             <h1 class="main-title">Chiara & Martín</h1>
             <p class="date">24 de Octubre de 2026</p>
             <p class="hebrew-date">13 de Jeshván de 5787</p>
-            
+
             <div class="countdown" id="countdown">
+                <div class="time-box">
+                    <span id="months">00</span>
+                    <small>Meses</small>
+                </div>
                 <div class="time-box">
                     <span id="days">00</span>
                     <small>Días</small>
@@ -56,7 +64,7 @@
     <section class="section event-details" id="detalles">
         <div class="container">
             <h2 class="section-title">Dónde & Cuándo</h2>
-            
+
             <div class="details-grid">
                 <div class="detail-card glass">
                     <i class="fas fa-calendar-alt fa-3x mb-3"></i>
@@ -73,7 +81,8 @@
                     <h3>Lugar</h3>
                     <p><strong>Espacio Pilar 1</strong></p>
                     <p>Chile 1963, CP: 1630<br>Pilar, Buenos Aires</p>
-                    <a href="https://maps.google.com/?q=Espacio+Pilar+1,+Chile+1963,+1630+Pilar,+Provincia+de+Buenos+Aires" target="_blank" class="btn-outline mt-3">Ver en Google Maps</a>
+                    <a href="https://maps.google.com/?q=Espacio+Pilar+1,+Chile+1963,+1630+Pilar,+Provincia+de+Buenos+Aires"
+                        target="_blank" class="btn-outline mt-3">Ver en Google Maps</a>
                 </div>
             </div>
 
@@ -81,12 +90,14 @@
                 <div class="info-box glass">
                     <i class="fas fa-bus"></i>
                     <h4>Buses</h4>
-                    <p>Recomendamos enfáticamente que vengan en los buses que pondremos a disposición desde CABA para mayor comodidad y seguridad de todos.</p>
+                    <p>Recomendamos enfáticamente que vengan en los buses que pondremos a disposición desde CABA para
+                        mayor comodidad y seguridad de todos.</p>
                 </div>
                 <div class="info-box glass">
                     <i class="fas fa-parking"></i>
                     <h4>Estacionamiento</h4>
-                    <p>Para aquellos que decidan venir en auto, el predio cuenta con estacionamiento privado y seguridad toda la noche.</p>
+                    <p>Para aquellos que decidan venir en auto, el predio cuenta con estacionamiento privado y seguridad
+                        toda la noche.</p>
                 </div>
             </div>
         </div>
@@ -149,16 +160,19 @@
                     <i class="fas fa-user-tie fa-3x mb-3"></i>
                     <h3>Dress Code</h3>
                     <p>Formal / Black Tie Optional</p>
-                    <p>Queremos que se sientan increíbles. Les dejamos algunas ideas y referencias en nuestro tablero de Pinterest.</p>
-                    <a href="https://www.pinterest.com" target="_blank" class="btn-outline mt-3">Ver Board de Pinterest</a>
+                    <p>Queremos que se sientan increíbles. Les dejamos algunas ideas y referencias en nuestro tablero de
+                        Pinterest.</p>
+                    <a href="https://www.pinterest.com" target="_blank" class="btn-outline mt-3">Ver Board de
+                        Pinterest</a>
                 </div>
-                
+
                 <div class="info-card glass">
                     <i class="fas fa-gift fa-3x mb-3"></i>
                     <h3>Regalos</h3>
-                    <p>Su presencia es nuestro mayor regalo, pero si desean ayudarnos con nuestra luna de miel, pueden hacerlo a las siguientes cuentas:</p>
+                    <p>Su presencia es nuestro mayor regalo, pero si desean ayudarnos con nuestra luna de miel, pueden
+                        hacerlo a las siguientes cuentas:</p>
                     <button class="btn-outline mt-3" onclick="toggleGifts()">Ver Datos Bancarios</button>
-                    
+
                     <div class="gifts-details" id="giftsDetails">
                         <div class="account-box">
                             <h5>Pesos Argentinos (ARS)</h5>
@@ -182,14 +196,16 @@
     <section class="section rsvp-section" id="rsvp">
         <div class="container">
             <h2 class="section-title">RSVP</h2>
-            <p class="text-center mb-4 text-light">Por favor, confirmanos tu asistencia.<br><strong class="highlight">Nota:</strong> No hay opción de +1. Cada invitado debe llenar este formulario individualmente.</p>
-            
+            <p class="text-center mb-4 text-light">Por favor, confirmanos tu asistencia.<br><strong
+                    class="highlight">Nota:</strong> No hay opción de +1. Cada invitado debe llenar este formulario
+                individualmente.</p>
+
             <form class="rsvp-form glass" id="rsvpForm">
                 <div class="form-group">
                     <label for="name">Nombre y Apellido *</label>
                     <input type="text" id="name" required placeholder="Ej: Juan Pérez">
                 </div>
-                
+
                 <div class="form-group">
                     <label>¿Asistirás? *</label>
                     <div class="radio-group">
@@ -197,17 +213,17 @@
                         <label><input type="radio" name="attendance" value="no"> No podré asistir</label>
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="food">Restricciones Alimentarias</label>
                     <input type="text" id="food" placeholder="Celíaco, vegetariano, vegano, alergias...">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="song">¿Qué canción no puede faltar?</label>
                     <input type="text" id="song" placeholder="Artista y nombre de la canción">
                 </div>
-                
+
                 <button type="submit" class="btn-primary w-100">Enviar Confirmación</button>
             </form>
         </div>
@@ -217,8 +233,9 @@
     <section class="section guide-section" id="guia">
         <div class="container">
             <h2 class="section-title">Guía de Buenos Aires</h2>
-            <p class="text-center mb-5 text-light">Para quienes vienen de lejos, armamos esta guía con nuestras recomendaciones favoritas.</p>
-            
+            <p class="text-center mb-5 text-light">Para quienes vienen de lejos, armamos esta guía con nuestras
+                recomendaciones favoritas.</p>
+
             <div class="guide-grid">
                 <div class="guide-card glass">
                     <div class="img-placeholder" style="height:200px">Foto Hoteles</div>
@@ -262,4 +279,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
